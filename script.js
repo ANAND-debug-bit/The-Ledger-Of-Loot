@@ -735,6 +735,90 @@ return ` <article class="card${hasImage ? " has-image" : ""}" data-id="${item.id
 <span class="card__om" aria-hidden="true">&#3675;</span>
 </div> </article>`; }
 
+function groupByCategory(items) { const map = {};
+items.forEach(it => { if (!map[it.category]) map[it.category] = []; map[it.category].push(it); });
+return map; }
+
+function renderChambers(items) { const grouped = groupByCategory(items);
+const container = document.getElementById("chambers"); let html = "";
+
+CHAMBER_ORDER.forEach((cat, i) => { const list = grouped[cat];
+if (!list || list.length === 0) return;
+const meta = CHAMBER_META[cat] || { dev: "", desc: "" };
+    const slug = slugifyCategory(cat);
+
+html += ` <section class="chamber" id="chamber-${slug}" data-chamber="${escapeHtml(cat)}">
+<div class="chamber__head">
+<p class="chamber__eyebrow">Chamber ${ROMAN[i] || (i + 1)}</p>
+<h2 class="chamber__title">${escapeHtml(cat)}</h2>
+<p class="chamber__dev">${meta.dev}</p>
+<p class="chamber__desc">${meta.desc}</p>
+</div>
+<div class="card-grid"> ${list.map(renderCard).join("")}
+</div> </section>
+${i < CHAMBER_ORDER.length - 1 ? '<div class="temple-divider" aria-hidden="true">&#2384;</div>' : ""} `; });
+container.innerHTML = html; }
+
+function renderFilterBar() { const bar = document.getElementById("filterBar");
+let html = `<button class="chip is-active" data-filter="all">All Chambers</button>`;
+CHAMBER_ORDER.forEach(cat => {
+const grouped = groupByCategory(LOOT_ITEMS);
+if (!grouped[cat]) return;
+html += `<button class="chip" data-filter="${slugifyCategory(cat)}">${escapeHtml(cat)}</button>`; });
+  bar.innerHTML = html;
+
+bar.addEventListener("click", (e) => {const btn = e.target.closest(".chip");
+if (!btn) return;
+bar.querySelectorAll(".chip").forEach(c => c.classList.remove("is-active"));
+btn.classList.add("is-active");
+const filter = btn.dataset.filter;
+if (filter === "all") {document.querySelectorAll(".chamber").forEach(sec => sec.style.display = "");
+document.querySelectorAll(".temple-divider").forEach(d => d.style.display = "");}
+else {
+document.querySelectorAll(".chamber").forEach(sec => {
+sec.style.display = sec.id === `chamber-${filter}` ? "" : "none";});
+      document.querySelectorAll(".temple-divider").forEach(d => d.style.display = "none");
+      document.getElementById(`chamber-${filter}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    applySearch(document.getElementById("searchInput").value);
+  });
+}
+
+function applySearch(query) {const q = query.trim().toLowerCase();
+const cards = document.querySelectorAll(".card");
+let visibleCount = 0;
+
+cards.forEach(card => { const visibleByFilter = card.closest(".chamber").style.display !== "none";
+const matches = !q || card.dataset.search.includes(q); const show = visibleByFilter && matches;
+card.style.display = show ? "" : "none"; if (show) visibleCount++; });
+
+document.querySelectorAll(".chamber").forEach(sec => {if (sec.style.display === "none") return;
+const anyVisible = Array.from(sec.querySelectorAll(".card")).some(c => c.style.display !== "none");
+sec.style.display = anyVisible ? "" : "none"; });
+document.getElementById("resultCount").textContent = visibleCount;
+document.getElementById("noResults").style.display = visibleCount === 0 ? "block" : "none";}
+
+function setItemImage(id, url) {
+const item = LOOT_ITEMS.find(it => it.id === id);
+  if (!item) { console.warn("No item with id", id); return; }
+  item.image = url;
+  const card = document.querySelector(`.card[data-id="${id}"]`);
+  if (card) {
+    card.classList.add("has-image");
+    const img = card.querySelector("img");
+    img.src = url;}
+}
+window.setItemImage = setItemImage;
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("resultCount").textContent = LOOT_ITEMS.length;
+  renderFilterBar();
+  renderChambers(LOOT_ITEMS);
+  applyHeroImage();
+
+  const searchInput = document.getElementById("searchInput");
+  searchInput.addEventListener("input", (e) => applySearch(e.target.value));
+});
 
 
 
