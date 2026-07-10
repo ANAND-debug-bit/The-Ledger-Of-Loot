@@ -42,7 +42,7 @@ const LOOT_ITEMS =
 "taken": "1849, annexation of Punjab",
 "location": "Dispersed, UK museums and private collections",
 "status": "Still in Britain",
-"image": "blob:https://gemini.google.com/3da57d77-9d02-490c-ae8c-eba560d9659c",
+"image": "https://live.staticflickr.com/4524/25064574728_6b9c2b297c_b.jpg",
 "summary": "The royal treasury of the Sikh Empire, inventoried and divided up as war booty.",
 "history": "Maharaja Ranjit Singh's Toshakhana held one of the richest jewel collections in Asia. After annexation, British officials catalogued and dispersed it — the finest pieces to London, the rest sold at auction to fund the occupying administration.",
 "marquee": false,
@@ -433,7 +433,7 @@ const LOOT_ITEMS =
 "taken": "Discovered 1861, removed 1862",
 "location": "Birmingham Museum and Art Gallery, UK",
 "status": "Still in Britain",
-"image": "https://media.britishmuseum.org/media/Repository/Documents/2018_2/9_12/a11fc9a3_f569_463f_9190_a88200d4fb16/mid_RRI11081.jpg",
+"image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThebeXPAQvgZMFE3-t6nTEqH0fUXgL56h8Lco329ksbgHF_JmJGCVx1Thk&s=10",
 "summary": "A seven-and-a-half-foot copper Buddha, the largest known metal sculpture of its period.",
 "history": "Unearthed during railway construction near Bhagalpur, this over-life-sized copper figure is considered the finest surviving large metal sculpture of the late Gupta era. It was shipped to England and eventually donated to Birmingham, where it remains on permanent display.",
 "marquee": true,
@@ -446,7 +446,7 @@ const LOOT_ITEMS =
  "taken": "Colonial-era and later removals",
 "location": "Dispersed, UK and private collections",
 "status": "Disputed",
-"image": "",
+"image": "https://media.britishmuseum.org/media/Repository/Documents/2018_2/9_12/a11fc9a3_f569_463f_9190_a88200d4fb16/mid_RRI11081.jpg",
 "summary": "A bronze figure of Shiva as Nataraja, Lord of the Cosmic Dance, cast in the classical Chola lost-wax technique.",
 "history": "Chola bronzes were removed from South Indian temples in significant numbers from the colonial period onward. Nataraja figures remain among the most frequently raised repatriation cases by Indian authorities today.",
 "marquee": false,
@@ -659,4 +659,86 @@ const LOOT_ITEMS =
 "marquee": false,
 "id": "mughal-miniature-akbarnama-folio"}
 ];
+
+const CHAMBER_ORDER = ["Jewels & Royal Regalia", "Weapons & Armour", "Thrones & State Treasure", "Sculptures & Idols",
+"Manuscripts & Paintings", "Temple Artefacts & Relics", "Coins & Seals", "Textiles & Carpets", "Royal Treasures & Curios"];
+
+const ROMAN = ["I","II","III","IV","V","VI","VII","VIII","IX","X"];
+
+const CHAMBER_META = {
+"Jewels & Royal Regalia": { dev: "रत्न एवं राजचिह्न", desc: "Stones mined and cut in India, worn for generations by its rulers, now set into crowns that will never touch Indian soil again." },
+  
+"Weapons & Armour": { dev: "शस्त्र और कवच", desc: "Swords, daggers and armour taken from battlefields and treasuries alike — trophies of campaigns fought to take far more than metal." },
+  
+"Thrones & State Treasure": {dev: "सिंहासन और राजकोष",
+desc: "The physical seats of sovereignty and the treasuries beneath them, divided up as spoils the moment a kingdom stopped being one." },
+
+"Sculptures & Idols": { dev: "मूर्तियाँ और प्रतिमाएँ", desc: "Gods and guardians carved for temples that still stand — minus the figures that once faced their worshippers." },
+
+"Manuscripts & Paintings": { dev: "पांडुलिपियाँ और चित्रकला", desc: "Centuries of thought, poetry and portraiture, bound in libraries an ocean away from the languages they were written in." },
+
+"Temple Artefacts & Relics": { dev: "मंदिर की वस्तुएँ और अवशेष", desc: "Bells, vessels and fittings that once kept ritual time in living shrines, removed piece by piece under the cover of administration." },
+
+"Coins & Seals": { dev: "सिक्के और मुद्राएँ", desc: "The small, hard evidence of empires that minted their own money — hoarded now in drawers instead of circulation." },
+
+"Textiles & Carpets": { dev: "वस्त्र और कालीन",
+desc: "Weaves that took months to finish and generations to master, exported as souvenirs of a craft that was never really understood." },
+
+"Royal Treasures & Curios": { dev: "शाही खजाना और वस्तुएँ", desc: "The odds and ends of royal life — cups, boxes, furniture — kept today as curiosities rather than what they were: someone's home." } };
+
+const CATEGORY_ICONS = {
+"Jewels & Royal Regalia": '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M24 6l10 10-10 26L14 16z"/><path d="M14 16h20M24 6l-5 10h10z"/></svg>',
+
+"Weapons & Armour": '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 38L34 14"/><path d="M28 8l8 8-4 4-8-8z"/><path d="M8 40l4-6 2 2z"/></svg>',
+
+"Thrones & State Treasure": '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 42V20a4 4 0 014-4h12a4 4 0 014 4v22"/><path d="M10 42h28M14 30h20M18 16V8M30 16V8"/></svg>',
+
+"Sculptures & Idols": '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="24" cy="12" r="5"/><path d="M14 40c0-10 4-16 10-16s10 6 10 16"/><path d="M16 26h16"/></svg>',
+
+"Manuscripts & Paintings": '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="10" y="8" width="28" height="32" rx="1"/><path d="M16 16h16M16 22h16M16 28h10"/></svg>',
+
+"Temple Artefacts & Relics": '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M24 6l16 12v4H8v-4z"/><path d="M12 22v18M20 22v18M28 22v18M36 22v18M8 40h32"/></svg>',
+
+"Coins & Seals": '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="24" cy="24" r="15"/><circle cx="24" cy="24" r="9"/></svg>',
+
+"Textiles & Carpets": '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="8" y="10" width="32" height="28" rx="1"/><path d="M8 18h32M8 26h32M8 34h32M16 10v28M24 10v28M32 10v28"/></svg>',
+"Royal Treasures & Curios": '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="8" y="18" width="32" height="20" rx="2"/><path d="M8 26h32"/><path d="M18 18v-4a6 6 0 0112 0v4"/></svg>' };
+
+function slugifyCategory(cat) { return cat.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""); }
+
+function statusTagClass(status) { if (status === "Returned") return "tag tag--returned"; if (status === "Disputed") return "tag tag--disputed"; return "tag"; }
+
+function escapeHtml(str) { return String(str)
+.replace(/&/g, "&amp;") .replace(/</g, "&lt;") .replace(/>/g, "&gt;"); }
+
+function renderCard(item) { const hasImage = item.image && item.image.trim().length > 0;
+  const icon = CATEGORY_ICONS[item.category] || CATEGORY_ICONS["Royal Treasures & Curios"];
+
+return ` <article class="card${hasImage ? " has-image" : ""}" data-id="${item.id}" data-category="${escapeHtml(item.category)}" data-search="${escapeHtml((item.name + " " + item.origin + " " + item.period + " " + item.location + " " + item.summary).toLowerCase())}">
+<span class="card__corner card__corner--tl" aria-hidden="true"></span>
+<span class="card__corner card__corner--br" aria-hidden="true"></span>
+<div class="card__media">
+<img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.name)}" loading="lazy" onerror="this.parentElement.classList.remove('has-image'); this.style.display='none';">
+<div class="card__icon">${icon}</div>
+<p class="card__media-caption">${escapeHtml(item.name)}</p>
+</div>
+<div class="card__body">
+<span class="${statusTagClass(item.status)}">${escapeHtml(item.status)}</span>
+<h3 class="card__title">${escapeHtml(item.name)}</h3>
+<dl class="card__meta">
+<dt>Origin</dt><dd>${escapeHtml(item.origin)}</dd>
+<dt>Taken</dt><dd>${escapeHtml(item.taken)}</dd>
+<dt>Now At</dt><dd>${escapeHtml(item.location)}</dd>
+</dl>
+<p class="card__summary">${escapeHtml(item.summary)}</p>
+<p class="card__history">${escapeHtml(item.history)}</p>
+<span class="card__om" aria-hidden="true">&#3675;</span>
+</div> </article>`; }
+
+
+
+
+
+
+
 
