@@ -44,7 +44,7 @@
 </ul>
 <hr>
 <h3> AI use </h3>
-<p>I used AI to get the data for all the 50 items ,, help in some parts of styling of the site .</p>
+<p>I used AI to get the data for all the 50 items ,, help in some parts of styling of the site and assistance in readme..</p>
 <hr>
 <h2>TECH STACK</h2>
 
