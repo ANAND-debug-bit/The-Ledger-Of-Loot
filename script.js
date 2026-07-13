@@ -842,9 +842,9 @@ document.addEventListener("DOMContentLoaded", () => {
         current.classList.remove('is-active');
 
         activeLayer = activeLayer === 'a' ? 'b' : 'a';
-      }
-    });
-  }, { threshold: 0.3 });
+}
+});
+}, { threshold: 0.3 });
 
   bgSections.forEach(section => bgObserver.observe(section));
 });

@@ -55,8 +55,7 @@ a { color: var(--bright_gold); }
   overflow: hidden;
 }
 
-.bg-fader__layer {
-  position: absolute;
+.bg-fader__layer { position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
@@ -64,17 +63,12 @@ a { color: var(--bright_gold); }
   mix-blend-mode: luminosity;
   -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 0%, transparent 80%);
   mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 0%, transparent 80%);
-  transition: opacity 1.4s ease;
-}
+  transition: opacity 1.4s ease; }
 
-.bg-fader__layer.is-active {
-  opacity: 0.1;
-}
+.bg-fader__layer.is-active { opacity: 0.1; }
 
-.paisley-field > *:not(.bg-fader) {
-  position: relative;
-  z-index: 1;
-}
+.paisley-field > *:not(.bg-fader) { position: relative;
+z-index: 1; }
 
 .site-nav { position: sticky;
 top: 0; z-index: 50;
