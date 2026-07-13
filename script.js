@@ -8,6 +8,12 @@ else { hero.style.setProperty("--hero-bg-image", "none"); } }
 function setHeroImage(url) { HERO_IMAGE_STATE.url = url; applyHeroImage(); }
 window.setHeroImage = setHeroImage;
 
+const CHAMBER_BG_IMAGES = [
+  "images/bg-1.png",
+  "images/bg-2.png",
+  "images/bg-3.png"
+];
+
 const LOOT_ITEMS =
 [ { "name": "The Koh-i-Noor Diamond",
 "category": "Jewels & Royal Regalia",
@@ -715,8 +721,6 @@ function renderCard(item) { const hasImage = item.image && item.image.trim().len
   const icon = CATEGORY_ICONS[item.category] || CATEGORY_ICONS["Royal Treasures & Curios"];
 
 return ` <article class="card${hasImage ? " has-image" : ""}" data-id="${item.id}" data-category="${escapeHtml(item.category)}" data-search="${escapeHtml((item.name + " " + item.origin + " " + item.period + " " + item.location + " " + item.summary).toLowerCase())}">
-<span class="card__corner card__corner--tl" aria-hidden="true"></span>
-<span class="card__corner card__corner--br" aria-hidden="true"></span>
 <div class="card__media">
 <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.name)}" loading="lazy" onerror="this.parentElement.classList.remove('has-image'); this.style.display='none';">
 <div class="card__icon">${icon}</div>
@@ -747,7 +751,7 @@ if (!list || list.length === 0) return;
 const meta = CHAMBER_META[cat] || { dev: "", desc: "" };
     const slug = slugifyCategory(cat);
 
-html += ` <section class="chamber" id="chamber-${slug}" data-chamber="${escapeHtml(cat)}">
+html += ` <section class="chamber" id="chamber-${slug}" data-chamber="${escapeHtml(cat)}" data-bg="${CHAMBER_BG_IMAGES[i % CHAMBER_BG_IMAGES.length]}">
 <div class="chamber__head">
 <p class="chamber__eyebrow">Chamber ${ROMAN[i] || (i + 1)}</p>
 <h2 class="chamber__title">${escapeHtml(cat)}</h2>
@@ -818,9 +822,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const searchInput = document.getElementById("searchInput");
   searchInput.addEventListener("input", (e) => applySearch(e.target.value));
+
+  const bgSections = document.querySelectorAll('[data-bg]');
+  const layers = {
+    a: document.querySelector('.bg-fader__layer[data-layer="a"]'),
+    b: document.querySelector('.bg-fader__layer[data-layer="b"]')
+  };
+  let activeLayer = 'a';
+
+  const bgObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const nextImage = entry.target.dataset.bg;
+        const current = layers[activeLayer];
+        const next = activeLayer === 'a' ? layers.b : layers.a;
+
+        next.style.backgroundImage = `url('${nextImage}')`;
+        next.classList.add('is-active');
+        current.classList.remove('is-active');
+
+        activeLayer = activeLayer === 'a' ? 'b' : 'a';
+      }
+    });
+  }, { threshold: 0.3 });
+
+  bgSections.forEach(section => bgObserver.observe(section));
 });
-
-
 
 
 
