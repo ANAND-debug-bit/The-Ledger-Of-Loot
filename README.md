@@ -11,12 +11,14 @@
   <br>
   Scroll down (or hit the "Descend Into the Vault" button) and you'll reach the stats section showing rough numbers on how much was taken from India during colonial rule, followed by the filter bar where you can jump straight to a specific section — > Jewels, Weapons & Armour, Thrones, Sculptures, Manuscripts,etc.
 
-  ![a2](image-1.png)
+  <img width="3420" height="2214" alt="image" src="https://github.com/user-attachments/assets/16f30a08-83bf-42b7-ba82-4bdc59400e25" />
+
 
   <br>
   Each chamber holds a set of item cards with a photo (wherever I've managed to find and add one), the item's origin, when it was taken, where it currently sits, and a short history of how it ended up there. There's also a search bar at the top so you can directly search for something like "Tipu" or "diamond" instead of scrolling through every chamber.
 
-  ![a3](image-2.png)
+  <img width="3420" height="2214" alt="image" src="https://github.com/user-attachments/assets/d2a4a20a-4ff7-4164-9d82-80b4dab8ff35" />
+
 
   ![a4](image-3.png)
 
