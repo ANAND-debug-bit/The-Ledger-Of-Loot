@@ -38,22 +38,18 @@ a { color: var(--bright_gold); }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; }
 * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; } }
 
-.paisley-field {
-  position: relative;
+.paisley-field { position: relative;
   background-color: var(--background_md);
   background-image:
     radial-gradient(circle at 15% 20%, rgba(201,162,74,0.05) 0, transparent 40%),
     radial-gradient(circle at 85% 75%, rgba(201,162,74,0.05) 0, transparent 40%);
-  background-repeat: no-repeat;
-}
+  background-repeat: no-repeat; }
 
-.bg-fader {
-  position: fixed;
+.bg-fader { position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  overflow: hidden;
-}
+  overflow: hidden; }
 
 .bg-fader__layer { position: absolute;
   inset: 0;
@@ -374,8 +370,7 @@ color: var(--parchment);
 font-size: 1.02rem;
 margin: 0 0 0.7rem; }
 
-.card__history { color: var(--parchment_d);
-font-size: 0.98rem;
+.card__history { color: var(--parchment_d); font-size: 0.98rem;
 line-height: 1.65;
 margin: 0;
 flex: 1; }
@@ -468,6 +463,7 @@ input:focus-visible {outline: 2px solid var(--bright_gold); outline-offset: 2px;
 .site-nav { padding: 0.7rem 1rem; }
 .hero { padding: 5rem 1rem 3rem; }
 .chamber { padding: 3.5rem 1rem 0.5rem; }
+  
 .card-grid { grid-template-columns: 1fr; } }
 
 
